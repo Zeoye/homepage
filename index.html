@@ -206,6 +206,17 @@
     </footer>
 
     <script>
+        // 等待DOM加载完成后初始化所有游戏
+        document.addEventListener('DOMContentLoaded', function() {
+            // 贪吃蛇游戏初始化
+            initGameData();
+
+            // 添加游戏卡片点击事件
+            document.querySelector('.game-card:nth-child(1)').onclick = openSnakeGame;
+            document.querySelector('.game-card:nth-child(2)').onclick = openTetrisGame;
+            document.querySelector('.game-card:nth-child(3)').onclick = openLinkGame;
+        });
+
         // 贪吃蛇游戏逻辑
         let canvas, ctx;
         let snake = [];
