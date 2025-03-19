@@ -579,3 +579,158 @@ footer small {
         height: auto;
     }
 }
+
+/* 移动端控制按钮样式 */
+.mobile-controls {
+    display: none;  /* 默认隐藏，只在移动端显示 */
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.controls-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    background: var(--accent-color);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+    background: var(--hover-color);
+}
+
+/* 移动端适配 */
+@media (max-width: 640px) {
+    .modal-content {
+        padding: 1rem;
+        width: 95%;
+    }
+
+    #snakeCanvas {
+        width: 100%;
+        height: auto;
+    }
+
+    .mobile-controls {
+        display: flex;  /* 在移动端显示控制按钮 */
+    }
+}
+
+/* 排行榜样式 */
+.leaderboard {
+    margin-top: 2rem;
+    background: var(--secondary-bg);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.leaderboard h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.leaderboard-item {
+    display: grid;
+    grid-template-columns: 40px 1fr 80px;
+    align-items: center;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.leaderboard-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.leaderboard-item .rank {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-align: center;
+}
+
+.leaderboard-item .name {
+    color: var(--text-color);
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 0.5rem;
+}
+
+.leaderboard-item .score {
+    color: var(--text-muted);
+    text-align: right;
+}
+
+/* 前三名特殊样式 */
+.leaderboard-item:nth-child(1) .rank {
+    color: gold;
+}
+
+.leaderboard-item:nth-child(2) .rank {
+    color: silver;
+}
+
+.leaderboard-item:nth-child(3) .rank {
+    color: #cd7f32;
+}
+
+/* 调整游戏信息布局 */
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--secondary-bg);
+    border-radius: 8px;
+}
+
+.game-info p {
+    margin: 0;
+    color: var(--text-color);
+}
+
+.game-info p:last-child {
+    margin-top: 0.5rem;
+}
+
+/* 移动端适配 */
+@media (max-width: 640px) {
+    .leaderboard-item {
+        grid-template-columns: 30px 1fr 60px;
+        font-size: 0.9rem;
+    }
+
+    .game-info {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
