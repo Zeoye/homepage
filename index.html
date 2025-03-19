@@ -14,6 +14,7 @@
             <a href="#skills">技能</a>
             <a href="#contact">联系</a>
             <a href="#projects">项目</a>
+            <a href="#games">游戏</a>
         </nav>
     </header>
 
@@ -100,11 +101,160 @@
                 </div>
             </div>
         </section>
+
+        <section id="games">
+            <h2>在线小游戏</h2>
+            <div class="games-grid">
+                <div class="game-card" onclick="openSnakeGame()">
+                    <h3>贪吃蛇</h3>
+                    <p>经典的贪吃蛇游戏，使用方向键控制蛇的移动</p>
+                    <button class="play-btn">开始游戏</button>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- 贪吃蛇游戏弹窗 -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeSnakeGame()">&times;</span>
+            <h2>贪吃蛇</h2>
+            <div class="game-container">
+                <canvas id="snakeCanvas" width="400" height="400"></canvas>
+                <div class="game-info">
+                    <p>分数: <span id="score">0</span></p>
+                    <button onclick="startGame()" class="start-btn">开始新游戏</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <p>Always learning, always growing.</p>
         <small>&copy; 2025 Zeoy</small>
     </footer>
+
+    <script>
+        // 贪吃蛇游戏逻辑
+        let canvas, ctx;
+        let snake = [];
+        let food = {};
+        let direction = 'right';
+        let gameLoop;
+        let score = 0;
+        const gridSize = 20;
+        const gridCount = 20;
+
+        function openSnakeGame() {
+            document.getElementById('gameModal').style.display = 'flex';
+            canvas = document.getElementById('snakeCanvas');
+            ctx = canvas.getContext('2d');
+            initGame();
+        }
+
+        function closeSnakeGame() {
+            document.getElementById('gameModal').style.display = 'none';
+            if (gameLoop) clearInterval(gameLoop);
+        }
+
+        function initGame() {
+            snake = [
+                {x: 6, y: 10},
+                {x: 5, y: 10},
+                {x: 4, y: 10}
+            ];
+            direction = 'right';
+            score = 0;
+            document.getElementById('score').textContent = score;
+            createFood();
+            if (gameLoop) clearInterval(gameLoop);
+            drawGame();
+        }
+
+        function startGame() {
+            initGame();
+            gameLoop = setInterval(moveSnake, 150);
+        }
+
+        function createFood() {
+            food = {
+                x: Math.floor(Math.random() * gridCount),
+                y: Math.floor(Math.random() * gridCount)
+            };
+            // 确保食物不会出现在蛇身上
+            while (snake.some(segment => segment.x === food.x && segment.y === food.y)) {
+                food = {
+                    x: Math.floor(Math.random() * gridCount),
+                    y: Math.floor(Math.random() * gridCount)
+                };
+            }
+        }
+
+        function drawGame() {
+            // 清空画布
+            ctx.fillStyle = '#1a1a1a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 画蛇
+            ctx.fillStyle = '#4CAF50';
+            snake.forEach(segment => {
+                ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
+            });
+
+            // 画食物
+            ctx.fillStyle = '#FF5252';
+            ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
+        }
+
+        function moveSnake() {
+            const head = {x: snake[0].x, y: snake[0].y};
+
+            switch(direction) {
+                case 'up': head.y--; break;
+                case 'down': head.y++; break;
+                case 'left': head.x--; break;
+                case 'right': head.x++; break;
+            }
+
+            // 检查是否撞墙或撞到自己
+            if (head.x < 0 || head.x >= gridCount || head.y < 0 || head.y >= gridCount ||
+                snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                alert('游戏结束！得分：' + score);
+                initGame();
+                return;
+            }
+
+            snake.unshift(head);
+
+            // 检查是否吃到食物
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                document.getElementById('score').textContent = score;
+                createFood();
+            } else {
+                snake.pop();
+            }
+
+            drawGame();
+        }
+
+        // 键盘控制
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowUp':
+                    if (direction !== 'down') direction = 'up';
+                    break;
+                case 'ArrowDown':
+                    if (direction !== 'up') direction = 'down';
+                    break;
+                case 'ArrowLeft':
+                    if (direction !== 'right') direction = 'left';
+                    break;
+                case 'ArrowRight':
+                    if (direction !== 'left') direction = 'right';
+                    break;
+            }
+        });
+    </script>
 </body>
 </html>
