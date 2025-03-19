@@ -1,0 +1,409 @@
+/* 现代风格主样式表 */
+:root {
+  --primary: #2ecc71;
+  --secondary: #3498db;
+  --accent: #e74c3c;
+  --dark: #2c3e50;
+  --light: #ecf0f1;
+  --bg-color: #0f172a;
+  --secondary-bg: #1e293b;
+  --text-color: #e2e8f0;
+  --text-muted: #94a3b8;
+  --accent-color: #60a5fa;
+  --border-color: #334155;
+  --light-gray: #f3f4f6;
+  --hover-color: #2563eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background: var(--bg-color);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  padding: 2rem 0;
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+}
+
+nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+section {
+  margin: 6rem 0;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--secondary-bg);
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
+  color: var(--text-color);
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.025em;
+  color: var(--text-color);
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 2rem 0;
+  width: 2rem;
+}
+
+.timeline {
+  margin-top: 2rem;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  border-left: 2px solid var(--border-color);
+  padding-left: 1rem;
+  margin-left: 0.5rem;
+}
+
+.year {
+  color: var(--accent-color);
+  font-weight: 500;
+  min-width: 4rem;
+}
+
+.event {
+  color: var(--text-muted);
+}
+
+.skills-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.skill-bar {
+  height: 4px;
+  background: var(--secondary-bg);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.skill-bar div {
+  height: 100%;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.contact-info {
+  display: flex;
+  gap: 2rem;
+}
+
+.contact-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-link:hover {
+  color: var(--accent-color);
+}
+
+footer {
+  margin-top: 6rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+footer p {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+footer small {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  section {
+    margin: 4rem 0;
+  }
+
+  .timeline-item {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .year {
+    min-width: auto;
+  }
+}
+
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.floating-nav {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  gap: 1.5rem;
+  z-index: 100;
+}
+
+.nav-item {
+  width: 50px;
+  height: 50px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  transform: translateY(-5px) scale(1.2);
+  background: var(--primary);
+}
+
+.parallax-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 4rem 10%;
+}
+
+.profile-card {
+  perspective: 1000px;
+  min-height: 400px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+
+.profile-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background: rgba(0,0,0,0.6);
+}
+
+.glitched-text {
+  position: relative;
+  font-size: 2.5rem;
+  text-shadow: 3px 3px 0 var(--accent);
+}
+
+.glitched-text::before,
+.glitched-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.glitched-text::before {
+  left: 2px;
+  text-shadow: -3px 0 cyan;
+  animation: glitch-1 2s infinite;
+}
+
+.glitched-text::after {
+  left: -2px;
+  text-shadow: 3px 0 magenta;
+  animation: glitch-2 2s infinite;
+}
+
+@keyframes glitch-1 {
+  0% { clip-path: inset(20% 0 30% 0) }
+  100% { clip-path: inset(10% 0 40% 0) }
+}
+
+@keyframes glitch-2 {
+  0% { clip-path: inset(40% 0 10% 0) }
+  100% { clip-path: inset(30% 0 20% 0) }
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.project-item {
+  position: relative;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.project-item:hover {
+  transform: translateY(-10px);
+}
+
+.project-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  padding: 1.5rem;
+  color: white;
+}
+
+@keyframes rotateBadge {
+  100% { transform: rotate(360deg); }
+}
+
+.experience-badge {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 60px;
+  height: 60px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  animation: rotateBadge 20s linear infinite;
+  box-shadow: 0 0 15px rgba(231,76,60,0.5);
+}
+
+.skill-chart {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.chart-item {
+  position: relative;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.chart-progress {
+  height: 100%;
+  background: var(--primary);
+  width: 0;
+  transition: width 1s ease-out;
+}
+
+.project-grid {
+  display: grid;
+}
+
+.skill {
+  background: var(--secondary-bg);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.skill:hover {
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.1);
+}
