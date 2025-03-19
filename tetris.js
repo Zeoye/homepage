@@ -249,13 +249,6 @@ function startTetris() {
 
 function endTetrisGame() {
     clearInterval(gameLoop);
-    if (score > 0) {
-        const playerName = prompt('游戏结束！你的得分是: ' + score + '\n请输入你的昵称:');
-        if (playerName) {
-            // 使用与贪吃蛇相同的API，但添加游戏类型
-            addToLeaderboard(playerName, score, 'tetris');
-        }
-    }
 }
 
 function openTetrisGame() {

@@ -582,17 +582,23 @@ footer small {
 
 /* 移动端控制按钮样式 */
 .mobile-controls {
-    display: none;  /* 默认隐藏，只在移动端显示 */
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 1.5rem;
+    width: 100%;
+    pointer-events: none;
 }
 
 .controls-row {
     display: flex;
     gap: 1rem;
     justify-content: center;
+    pointer-events: all;
 }
 
 .control-btn {
@@ -600,7 +606,7 @@ footer small {
     height: 50px;
     border: none;
     border-radius: 25px;
-    background: var(--accent-color);
+    background: rgba(96, 165, 250, 0.5);
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
@@ -610,27 +616,18 @@ footer small {
     transition: all 0.2s ease;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    backdrop-filter: blur(5px);
 }
 
 .control-btn:active {
     transform: scale(0.95);
-    background: var(--hover-color);
+    background: rgba(96, 165, 250, 0.7);
 }
 
 /* 移动端适配 */
 @media (max-width: 640px) {
-    .modal-content {
-        padding: 1rem;
-        width: 95%;
-    }
-
-    #snakeCanvas {
-        width: 100%;
-        height: auto;
-    }
-
     .mobile-controls {
-        display: flex;  /* 在移动端显示控制按钮 */
+        display: flex;
     }
 }
 

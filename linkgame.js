@@ -252,14 +252,6 @@ function startLinkGame() {
 function endLinkGame(completed) {
     clearInterval(timer);
     canvas.removeEventListener('click', handleClick);
-    
-    if (score > 0) {
-        const message = completed ? '恭喜通关！' : '时间到！';
-        const playerName = prompt(message + '你的得分是: ' + score + '\n请输入你的昵称:');
-        if (playerName) {
-            addToLeaderboard(playerName, score, 'link');
-        }
-    }
 }
 
 function openLinkGame() {
