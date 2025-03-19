@@ -734,3 +734,96 @@ footer small {
         text-align: center;
     }
 }
+
+/* 俄罗斯方块样式 */
+.tetris-container {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.tetris-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.next-piece {
+    background: var(--secondary-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.next-piece h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+#tetrisCanvas {
+    background: #1a1a1a;
+    border-radius: 8px;
+}
+
+#nextPieceCanvas {
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+
+/* 连连看样式 */
+.link-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.link-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--secondary-bg);
+    border-radius: 8px;
+}
+
+#linkCanvas {
+    background: #1a1a1a;
+    border-radius: 8px;
+}
+
+/* 游戏控制按钮样式增强 */
+.tetris-controls .control-btn {
+    min-width: 60px;
+}
+
+.tetris-controls .controls-row:last-child .control-btn {
+    width: 120px;
+}
+
+/* 移动端适配增强 */
+@media (max-width: 768px) {
+    .tetris-container {
+        flex-direction: column;
+    }
+
+    .tetris-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    #tetrisCanvas, #linkCanvas {
+        width: 100%;
+        height: auto;
+    }
+
+    .next-piece {
+        width: 100%;
+    }
+
+    .link-info {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
